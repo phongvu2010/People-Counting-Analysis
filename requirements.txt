@@ -31,8 +31,6 @@ SQLAlchemy
 
 ### Streamlit
 plotly
-# st-pages
 streamlit
 streamlit-authenticator
-# streamlit-option-menu
 watchdog

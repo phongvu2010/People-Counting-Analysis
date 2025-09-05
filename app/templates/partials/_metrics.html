@@ -1,0 +1,52 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+    <!-- Metric Card Template -->
+    <div class="bg-gray-900/50 border border-gray-700/50 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-blue-500/20 hover:border-blue-500/50 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-sm font-medium text-gray-400">Tổng lượt vào</p>
+            <div class="bg-blue-500/20 p-2 rounded-lg">
+                <i data-lucide="users" class="h-5 w-5 text-blue-400"></i>
+            </div>
+        </div>
+        <p id="metric-total-in" class="text-4xl font-extrabold text-white">0</p>
+    </div>
+
+    <div class="bg-gray-900/50 border border-gray-700/50 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-green-500/20 hover:border-green-500/50 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-sm font-medium text-gray-400">TB lượt vào</p>
+            <div class="bg-green-500/20 p-2 rounded-lg">
+                <i data-lucide="trending-up" class="h-5 w-5 text-green-400"></i>
+            </div>
+        </div>
+        <p id="metric-average-in" class="text-4xl font-extrabold text-white">0</p>
+    </div>
+
+    <div class="bg-gray-900/50 border border-gray-700/50 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-yellow-500/20 hover:border-yellow-500/50 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-sm font-medium text-gray-400">Cao điểm</p>
+            <div class="bg-yellow-500/20 p-2 rounded-lg">
+                <i data-lucide="clock" class="h-5 w-5 text-yellow-400"></i>
+            </div>
+        </div>
+        <p id="metric-peak-time" class="text-4xl font-extrabold text-white">--:--</p>
+    </div>
+
+    <div class="bg-gray-900/50 border border-gray-700/50 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-purple-500/20 hover:border-purple-500/50 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-sm font-medium text-gray-400">Vị trí đông nhất</p>
+            <div class="bg-purple-500/20 p-2 rounded-lg">
+                <i data-lucide="store" class="h-5 w-5 text-purple-400"></i>
+            </div>
+        </div>
+        <p id="metric-busiest-store" class="text-4xl font-extrabold text-white truncate">N/A</p>
+    </div>
+
+    <div id="metric-growth-card" class="bg-gray-900/50 border border-gray-700/50 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-red-500/20 hover:border-red-500/50 hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+            <p class="text-sm font-medium text-gray-400">Tăng trưởng</p>
+            <div data-container="icon" class="bg-red-500/20 p-2 rounded-lg">
+                <i data-lucide="arrow-up-right" class="h-5 w-5 text-red-400"></i>
+            </div>
+        </div>
+        <p id="metric-growth" class="text-4xl font-extrabold text-white">0.0%</p>
+    </div>
+</div>

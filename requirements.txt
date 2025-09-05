@@ -21,16 +21,16 @@
 
 
 ### Packages
+cachetools
 pandas
+pyarrow
 
 
 ### Packages database
-pyodbc
-SQLAlchemy
+duckdb
+pyodbc              # Driver for MSSQL, có thể thay đổi tùy hệ thống
+SQLAlchemy          # For MSSQL connection
 
 
-### Streamlit
-plotly
-streamlit
-streamlit-authenticator
-watchdog
+### Web
+fastapi[all]

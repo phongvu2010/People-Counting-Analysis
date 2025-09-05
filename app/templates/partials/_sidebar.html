@@ -1,0 +1,30 @@
+<aside style="width: var(--sidebar-width);" class="sidebar fixed top-0 left-0 h-screen bg-gray-900 border-r border-gray-700/50 flex flex-col z-30">
+    <!-- Logo -->
+    <div class="flex items-center justify-center h-20 border-b border-gray-700/50 px-4">
+        <img src="{{ url_for('static', path='logo.png') }}" alt="Logo" class="h-12 w-auto">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-4 py-6 space-y-2">
+        <!-- 
+        <a href="#" class="flex items-center px-4 py-2.5 text-white bg-blue-500/20 rounded-lg">
+            <i data-lucide="layout-dashboard" class="h-5 w-5 mr-3"></i>
+            <span class="font-medium">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800/60 rounded-lg transition-colors duration-200">
+            <i data-lucide="settings" class="h-5 w-5 mr-3"></i>
+            <span class="font-medium">Cài đặt</span>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800/60 rounded-lg transition-colors duration-200">
+            <i data-lucide="user" class="h-5 w-5 mr-3"></i>
+            <span class="font-medium">Tài khoản</span>
+        </a>
+         -->
+    </nav>
+
+    <!-- Footer -->
+    <div class="px-4 py-6 border-t border-gray-700/50">
+        <p class="text-xs text-gray-500">&copy; 2024. All rights reserved.</p>
+        <p id="latest-data-timestamp" class="text-xs text-gray-500 mt-2"></p>
+    </div>
+</aside>

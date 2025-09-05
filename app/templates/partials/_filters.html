@@ -1,0 +1,34 @@
+<div class="bg-gray-900/50 border border-gray-700/50 p-4 rounded-xl shadow-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+        <!-- Date Range Picker -->
+        <div>
+            <label for="date-range-picker" class="block text-sm font-medium text-gray-300 mb-2">Khoảng thời gian</label>
+            <input type="text" id="date-range-picker" class="w-full bg-gray-800 border-gray-600 rounded-lg shadow-sm py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+        </div>
+
+        <!-- Period Selector -->
+        <div>
+            <label for="period-selector" class="block text-sm font-medium text-gray-300 mb-2">Xem theo</label>
+            <select id="period-selector" class="custom-select w-full bg-gray-800 border-gray-600 rounded-lg shadow-sm py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                <option value="day">Ngày</option>
+                <option value="week">Tuần</option>
+                <option value="month" selected>Tháng</option>
+                <option value="year">Năm</option>
+            </select>
+        </div>
+
+        <!-- Store Selector -->
+        <div>
+            <label for="store-selector" class="block text-sm font-medium text-gray-300 mb-2">Vị trí</label>
+            <select id="store-selector" class="custom-select w-full bg-gray-800 border-gray-600 rounded-lg shadow-sm py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                <option value="all">Tất cả vị trí</option>
+            </select>
+        </div>
+
+        <!-- Apply Button -->
+        <button id="apply-filters-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out flex items-center justify-center">
+            <i data-lucide="search" class="h-5 w-5 mr-2"></i>
+            Áp dụng
+        </button>
+    </div>
+</div>

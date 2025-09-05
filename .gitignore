@@ -1,8 +1,7 @@
-# Virtual environment
-.venv/
-
-# Python cache
 __pycache__/
+.venv/
+data/
+logs/
 
-# Streamlit secrets file
-*.streamlit/secrets.toml
+.env
+*.duckdb

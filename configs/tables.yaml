@@ -1,0 +1,57 @@
+# ==============================================================================
+# BẢNG DIMENSION (BẢNG CHIỀU)
+# Các bảng này chứa thông tin mô tả, ít thay đổi và cần được xử lý trước.
+# ==============================================================================
+store:
+  source_table: dbo.store
+  dest_table: dim_stores
+  description: 'Bảng dimension chứa thông tin định danh các cửa hàng, vị trí.'
+  processing_order: 10      # Chạy đầu tiên để đảm bảo các bảng fact có thể tham chiếu.
+  incremental: false        # Luôn tải lại toàn bộ (full-load) vì dữ liệu này ít và quan trọng.
+  rename_map:
+    tid: store_id
+    name: store_name
+  cleaning_rules:
+    - column: name          # Tên cột gốc trong SQL Server.
+      action: strip         # Loại bỏ khoảng trắng thừa ở đầu và cuối.
+
+# ==============================================================================
+# BẢNG FACT (BẢNG SỰ KIỆN)
+# Các bảng này chứa dữ liệu giao dịch, sự kiện, được cập nhật thường xuyên.
+# ==============================================================================
+num_crowd:
+  source_table: dbo.num_crowd
+  dest_table: fact_traffic
+  description: 'Bảng fact ghi nhận dữ liệu lượt ra/vào của khách theo thời gian.'
+  processing_order: 20      # Chạy sau các bảng dimension.
+  incremental: true         # Chạy ở chế độ tăng trưởng (chỉ lấy dữ liệu mới).
+  timestamp_col: recordtime # Cột timestamp dùng để xác định "dữ liệu mới".
+  partition_cols: [year, month] # Phân vùng dữ liệu trong Parquet theo năm và tháng để tối ưu truy vấn.
+  rename_map:
+    recordtime: recorded_at
+    in_num: visitors_in
+    out_num: visitors_out
+    position: device_position
+    storeid: store_id
+  cleaning_rules:
+    - column: position
+      action: strip
+
+ErrLog:
+  source_table: dbo.ErrLog
+  dest_table: fact_errors
+  description: 'Bảng fact ghi nhận các lỗi phát sinh từ thiết bị đếm.'
+  processing_order: 20
+  incremental: true
+  timestamp_col: LogTime
+  partition_cols: [year, month]
+  rename_map:
+    ID: log_id
+    storeid: store_id
+    DeviceCode: device_code
+    LogTime: logged_at
+    Errorcode: error_code
+    ErrorMessage: error_message
+  cleaning_rules:
+    - column: ErrorMessage
+      action: strip

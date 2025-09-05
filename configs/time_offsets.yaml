@@ -1,0 +1,35 @@
+# ==============================================================================
+# CẤU HÌNH ĐIỀU CHỈNH CHÊNH LỆCH THỜI GIAN
+# ==============================================================================
+# Module Transform sẽ sử dụng file này để tự động điều chỉnh lại thời gian
+# bị sai lệch trên các thiết bị.
+#
+# - Key chính (num_crowd, ErrLog) phải khớp với tên bảng trong SQL Server.
+# - Key phụ là `store_id` (sau khi đã đổi tên từ `tid` hoặc `storeid`).
+# - Giá trị là số phút chênh lệch.
+#   - Giá trị dương (+): Đồng hồ của thiết bị đang chạy NHANH HƠN thực tế.
+#     (Ví dụ: 55 -> ETL sẽ trừ đi 55 phút).
+#   - Giá trị âm (-): Đồng hồ của thiết bị đang chạy CHẬM HƠN thực tế.
+#     (Ví dụ: -105 -> ETL sẽ cộng thêm 105 phút).
+# ==============================================================================
+num_crowd:
+  28: 53
+  30: 82
+  31: 105
+  32: 45
+  33: 89
+  34: 103
+  35: 63
+  36: 179
+  37: 94
+
+ErrLog:
+  28: 53
+  30: 82
+  31: 105
+  32: 45
+  33: 89
+  34: 103
+  35: 63
+  36: 179
+  37: 94

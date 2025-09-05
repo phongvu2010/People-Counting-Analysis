@@ -1,0 +1,70 @@
+version: 1
+disable_existing_loggers: false
+
+# ==============================================================================
+# FILTERS: Bộ lọc tùy chỉnh để điều hướng log
+# ==============================================================================
+filters:
+  # Chỉ cho phép các log có level từ WARNING trở xuống đi qua.
+  # Dùng để tách log INFO/DEBUG ra stdout và WARNING/ERROR ra stderr.
+  below_warning:
+    (): app.utils.logger.MaxLevelFilter
+    level: WARNING
+
+# ==============================================================================
+# FORMATTERS: Định dạng cho nội dung log
+# ==============================================================================
+formatters:
+  # Định dạng mặc định, dễ đọc cho con người khi xem trên console.
+  default:
+    format: "%(asctime)s - %(levelname)-8s - [%(name)s] - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  # Định dạng JSON, phù hợp cho các hệ thống thu thập log tự động (VD: ELK, Splunk).
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: "%(asctime)s %(levelname)s %(name)s %(filename)s %(lineno)d %(message)s"
+
+# ==============================================================================
+# HANDLERS: Nơi xử lý và xuất log (console, file, etc.)
+# ==============================================================================
+handlers:
+  # Xuất log (INFO, DEBUG) ra console (Standard Output).
+  stdout:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: default
+    stream: ext://sys.stdout
+    filters: [below_warning] # Áp dụng filter
+  # Xuất log lỗi (WARNING, ERROR, CRITICAL) ra console (Standard Error).
+  stderr:
+    class: logging.StreamHandler
+    level: WARNING
+    formatter: default
+    stream: ext://sys.stderr
+  # Ghi log ra file, tự động xoay vòng file theo ngày.
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: default
+    filename: logs/app.log
+    when: midnight      # Xoay vòng file vào lúc nửa đêm.
+    interval: 1         # Mỗi ngày một file.
+    backupCount: 14     # Giữ lại log của 14 ngày gần nhất.
+    encoding: utf-8
+  # Ghi log dạng JSON ra file (dùng cho các hệ thống phân tích log).
+  file_json:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: json
+    filename: logs/app.json.log
+    when: midnight
+    interval: 1
+    backupCount: 14
+    encoding: utf-8
+
+# ==============================================================================
+# ROOT LOGGER: Cấu hình gốc, áp dụng cho toàn bộ ứng dụng.
+# ==============================================================================
+root:
+  level: INFO # Mức log mặc định, có thể bị ghi đè bởi biến môi trường LOG_LEVEL.
+  handlers: [stdout, stderr, file, file_json]

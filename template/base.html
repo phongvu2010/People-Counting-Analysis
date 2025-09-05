@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project_name }} - Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/images/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', path='/images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='/images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', path='/images/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', path='/images/site.webmanifest') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body class="min-h-screen bg-gray-950 text-gray-300 font-sans">
+    <div class="flex">
+        {% include "partials/_sidebar.html" %}
+
+        <div class="flex-1 main-content flex flex-col">
+            {% block header %}{% endblock %}
+
+            <main class="p-4 sm:p-6 lg:p-8 flex-grow">
+                {% block content %}{% endblock %}
+            </main>
+
+            {% include "partials/_footer.html" %}
+        </div>
+    </div>
+
+    {% include "partials/_error_modal.html" %}
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="{{ url_for('static', path='js/dashboard.js') }}"></script>
+</body>
+</html>

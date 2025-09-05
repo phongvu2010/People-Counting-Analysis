@@ -1,0 +1,40 @@
+# Git and version control
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Python virtual environment and cache
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Local data, logs, and state
+# Những thư mục này nên được quản lý bởi Docker volumes, không nên build vào image.
+data/
+logs/
+tests/
+
+# Node.js dependencies
+# Thư mục này rất lớn và không cần thiết cho image production.
+node_modules/
+
+# Environment files
+# CỰC KỲ QUAN TRỌNG: Không bao giờ đưa file chứa bí mật vào Docker image.
+.env
+.env.*
+.env.example
+
+# Configuration cho IDE
+.idea/
+.vscode/
+*.iml
+
+# Các file tạm và tài liệu không cần thiết cho runtime
+__trash__/
+README.md

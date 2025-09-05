@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./data:/home/appuser/data
+      - ./logs:/home/appuser/logs
+    restart: unless-stopped
+    command: ["/home/appuser/.venv/bin/python", "cli.py", "serve", "--host", "0.0.0.0", "--no-reload"]

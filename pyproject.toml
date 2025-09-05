@@ -1,0 +1,91 @@
+# ==============================================================================
+# Build System Configuration (PEP 517)
+# ==============================================================================
+# Phần này là tiêu chuẩn, cho phép các công cụ như pip biết cách để build dự án của bạn.
+# Poetry là một công cụ quản lý dependency và đóng gói hiện đại.
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+# ==============================================================================
+# Project Metadata (PEP 621)
+# ==============================================================================
+# Thông tin cơ bản về dự án của bạn.
+[tool.poetry]
+name = "analytics-icount-people"
+version = "2.1.0"
+description = "Hệ thống thống kê và phân tích lưu lượng người ra vào, xây dựng bằng FastAPI và DuckDB."
+authors = ["Hunter Do <phongvu2010@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "app"}]
+
+
+# ==============================================================================
+# Main Dependencies - Đã cập nhật cho Python 3.12
+# ==============================================================================
+# Các thư viện cần thiết để ứng dụng chạy trên môi trường production.
+[tool.poetry.dependencies]
+python = "^3.12"
+
+# --- Web Framework & Server ---
+# fastapi[all] sẽ tự động cài các phiên bản tương thích mới nhất của:
+# uvicorn, jinja2, python-multipart, pyyaml...
+fastapi = {extras = ["all"], version = "^0.111.0"}
+
+# --- Data & Database ---
+duckdb = "^0.10.3"
+pandas = "^2.2.3"
+pandera = "^0.24.0"
+pyarrow = "^17.0.0"
+sqlalchemy = "^2.0.31"
+pyodbc = "^5.2.0"       # Driver cho MS SQL Server
+
+# --- Utilities & Configuration ---
+pydantic = "^2.7.1"
+pydantic-settings = "^2.2.1"
+python-dateutil = "^2.9.0"
+requests = "^2.32.0"
+# typer[all] sẽ tự động cài rich để có giao diện dòng lệnh đẹp hơn
+typer = {extras = ["all"], version = "^0.12.3"}
+tenacity = "^8.5.0"
+cachetools = "^5.3.3"
+python-json-logger = "^2.0.7"
+typing-extensions = "^4.12.0"
+
+
+# ==============================================================================
+# Development Dependencies - Đã cập nhật
+# ==============================================================================
+# Các thư viện chỉ dùng trong lúc phát triển, không cần thiết cho production.
+# Chạy `poetry install --with dev` để cài đặt.
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"       # Framework để viết test
+httpx = "^0.27.0"       # HTTP client để test API (thay thế requests trong test)
+black = "^24.4.2"       # Tự động format code
+ruff = "^0.5.0"         # Linter siêu nhanh
+pre-commit = "^3.7.1"   # Chạy hooks trước khi commit (ví dụ: tự động format)
+
+
+# ==============================================================================
+# Tool Configurations
+# ==============================================================================
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP"    # pyupgrade
+]
+ignore = [
+    "E501" # Line too long, handled by black
+]
